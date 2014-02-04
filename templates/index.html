@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<input id='tweeturl' class="form-control" type='text' placeholder='Tweet URL' name='tweeturl' ></input>
+<p>
+<button class="btn btn-default" onclick='submit_tweet()' >bibTeX that</button>
+
+<div class="jumbotron">
+<pre align="left" id='result'></pre>
+</div>
+
+<script>
+    function submit_tweet() {
+        resultarea = document.getElementById( 'result' );
+        resultarea.innerHTML = 'Looking up tweet...';    
+       
+        tweeturl = document.getElementById( 'tweeturl' ).value;
+ 
+        $.ajax({ 
+            url: $SCRIPT_ROOT + '/',
+            type : 'POST',
+            data : { tweeturl : tweeturl, },
+            success : function(data){
+                data = jQuery.parseJSON( data );
+                resultarea.innerHTML = data;
+            },
+            cache: false,
+            error: function(jqXHR, textStatus, errorThrown) {
+                if( jqXHR.status == 400 ) { resultarea.innerHTML = 'Huh.'; }
+                if( jqXHR.status == 404 ) { resultarea.innerHTML = 'That\'s weird.'; }
+                if( jqXHR.status == 405 ) { resultarea.innerHTML = 'Wat.'; }
+            },
+            dataType: "text",
+            timeout: 30000 });
+    }
+
+</script>
+
+{% endblock %}
