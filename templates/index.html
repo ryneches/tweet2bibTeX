@@ -5,23 +5,28 @@
 <p>
 <button class="btn btn-default" onclick='submit_tweet()' >bibTeX that</button>
 
-<div class="jumbotron">
-<pre align="left" id='result'></pre>
+<div class="jumbotron" id="splat">
+    <h3 style="color:#000;" id="loadingmsg"></h3>
+    <pre align="left" id="resultarea"></pre>
 </div>
 
 <script>
     function submit_tweet() {
-        resultarea = document.getElementById( 'result' );
-        resultarea.innerHTML = 'Looking up tweet...';    
-       
+        splat      = document.getElementById( "splat" );
+        loadingmsg = document.getElementById( "loadingmsg" );
+        resultarea = document.getElementById( "resultarea" );
+        
         tweeturl = document.getElementById( 'tweeturl' ).value;
  
+        loadingmsg.innerHTML = "Looking up your tweet...";
+
         $.ajax({ 
             url: $SCRIPT_ROOT + '/',
             type : 'POST',
             data : { tweeturl : tweeturl, },
             success : function(data){
                 data = jQuery.parseJSON( data );
+                loadingmsg.innerHTML = "Here you go.";
                 resultarea.innerHTML = data;
             },
             cache: false,
