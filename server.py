@@ -13,7 +13,10 @@ def hello():
         return render_template( 'index.html' )
     if request.method == 'POST' :
         bib = tweet2bibTeX( request.form['tweeturl'] )
-        return json.dumps(bib)
+        if bib :
+            return json.dumps(bib)
+        else :
+            return( "Couldn't find tweet.", 405 )
 
 if __name__ == "__main__":
     app.run()

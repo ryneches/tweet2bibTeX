@@ -33,7 +33,7 @@
             error: function(jqXHR, textStatus, errorThrown) {
                 if( jqXHR.status == 400 ) { resultarea.innerHTML = 'Huh.'; }
                 if( jqXHR.status == 404 ) { resultarea.innerHTML = 'That\'s weird.'; }
-                if( jqXHR.status == 405 ) { resultarea.innerHTML = 'Wat.'; }
+                if( jqXHR.status == 405 ) { resultarea.innerHTML = "Wat. That's not a tweet."; }
             },
             dataType: "text",
             timeout: 30000 });

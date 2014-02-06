@@ -20,8 +20,12 @@ bibtemplate = """
 """
 
 def tweet2bibTeX( tweetlink, key=False ) :
-    id = tweetlink.split('/')[-1]
-    tweet = api.GetStatus(id).AsDict()
+    try :
+        id = tweetlink.split('/')[-1]
+        id = str(int(id))
+        tweet = api.GetStatus(id).AsDict()
+    except :
+        return False
     author = tweet['user']['name']
     user   = tweet['user']['screen_name']
     date   = tweet['created_at']
