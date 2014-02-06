@@ -1,7 +1,7 @@
-= tweet2bibTeX
+== tweet2bibTeX
 
-You put in a tweet. You get a bibTeX formatted reference, so you can
-cite that tweet in your manuscript. 
+You put in a tweet. You get out a bibTeX formatted reference. You can
+use it to cite that tweet in your manuscript. 
 
 Why? Because people talk about science on the internet, and because
 the word "plagiarism" doesn't have a special meaning just because it
