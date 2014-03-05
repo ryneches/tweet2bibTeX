@@ -15,7 +15,8 @@ bibtemplate = """
     title = {_TITLE_},
     month = {_MONTH_},
     year = {_YEAR_},
-    url = {_URL_}
+    url = {_URL_},
+    urldate = {_URLDATE_}
 }
 """
 
@@ -33,6 +34,7 @@ def tweet2bibTeX( tweetlink, key=False ) :
     date   = datetime.strptime( date, '%a %b %d %H:%M:%S +0000 %Y' )
     month  = date.strftime("%B")
     year   = date.strftime("%Y")
+    udate  = datetime.now().strftime( '%Y-%m-%d' )
     lname  = author.split()[-1]
     fname  = author.split()[:-1][0]
    
@@ -43,4 +45,5 @@ def tweet2bibTeX( tweetlink, key=False ) :
         .replace('_TITLE_', text)             \
         .replace('_YEAR_', year )             \
         .replace('_MONTH_', month )           \
-        .replace('_URL_', tweetlink ) 
+        .replace('_URL_', tweetlink )         \
+        .replace('_URLDATE_', udate )
